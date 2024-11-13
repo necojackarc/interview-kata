@@ -32,6 +32,23 @@ describe('Rover', () => {
         expect(rover.direction).toEqual('S');
     })
 
+    test("Rover turns to left three times", () => {
+        const command: Command = 'L';
+        rover.move(command);
+        rover.move(command);
+        rover.move(command);
+        expect(rover.direction).toEqual('E');
+    })
+
+    test("Rover turns to left four times", () => {
+        const command: Command = 'L';
+        rover.move(command);
+        rover.move(command);
+        rover.move(command);
+        rover.move(command);
+        expect(rover.direction).toEqual('N');
+    })
+
     test.todo("Rover turns to right")
 
     test.todo("Rover moves as directed")
