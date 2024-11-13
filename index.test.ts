@@ -34,6 +34,15 @@ test("Rover returns its position ", () => {
     expect(rover.position).toEqual(position);
 });
 
+test("Rover returns its direction ", () => {
+    const position: Position = { x: 1, y: 2 };
+    const direction: Direction = 'N';
+    const plateau = { maxX: 5, maxY: 5 };
+
+    const rover = new Rover(position, direction, plateau);
+    expect(rover.direction).toEqual(direction);
+});
+
 test.todo("Rover turns as directed")
 
 test.todo("Rover moves as directed")
