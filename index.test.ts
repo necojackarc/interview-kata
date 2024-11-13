@@ -1,28 +1,31 @@
 import { main, Position, Plateau, Direction, Rover } from './index';
 
-test("Rover returns its position ", () => {
+describe('Rover', () => {
+    let rover: Rover;
+
     const position: Position = { x: 1, y: 2 };
     const direction: Direction = 'N';
     const plateau = { maxX: 5, maxY: 5 };
 
-    const rover = new Rover(position, direction, plateau);
-    expect(rover.position).toEqual(position);
+    beforeEach(() => {
+        rover = new Rover(position, direction, plateau);
+    });
+
+    test("Rover returns its position ", () => {
+        expect(rover.position).toEqual(position);
+    });
+
+    test("Rover returns its direction ", () => {
+        expect(rover.direction).toEqual(direction);
+    });
+
+    test.todo("Rover turns as directed")
+
+    test.todo("Rover moves as directed")
+
+    test.todo("Rover does not move off the plateau")
+
 });
-
-test("Rover returns its direction ", () => {
-    const position: Position = { x: 1, y: 2 };
-    const direction: Direction = 'N';
-    const plateau = { maxX: 5, maxY: 5 };
-
-    const rover = new Rover(position, direction, plateau);
-    expect(rover.direction).toEqual(direction);
-});
-
-test.todo("Rover turns as directed")
-
-test.todo("Rover moves as directed")
-
-test.todo("Rover does not move off the plateau")
 
 // test("Example - Single Rover Pattern 1", () => {
 //     const input = [
