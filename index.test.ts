@@ -1,4 +1,4 @@
-import { main, Position, Plateau, Direction, Rover } from './index';
+import { main, Position, Plateau, Direction, Command, Rover } from './index';
 
 describe('Rover', () => {
     let rover: Rover;
@@ -19,7 +19,20 @@ describe('Rover', () => {
         expect(rover.direction).toEqual(direction);
     });
 
-    test.todo("Rover turns as directed")
+    test("Rover turns to left", () => {
+        const command: Command = 'L';
+        rover.move(command);
+        expect(rover.direction).toEqual('W');
+    })
+
+    test("Rover turns to left twice", () => {
+        const command: Command = 'L';
+        rover.move(command);
+        rover.move(command);
+        expect(rover.direction).toEqual('S');
+    })
+
+    test.todo("Rover turns to right")
 
     test.todo("Rover moves as directed")
 
