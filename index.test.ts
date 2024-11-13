@@ -1,29 +1,4 @@
-import { main } from './index';
-
-// TODO: Move to main
-interface Position {
-    x: number;
-    y: number;
-}
-
-interface Plateau {
-    maxX: number;
-    maxY: number;
-}
-
-type Direction = 'N' | 'E' | 'S' | 'W';
-
-class Rover {
-    public position: Position;
-    public direction: Direction;
-    private plateau: Plateau;
-
-    constructor(position: Position, direction: Direction, plateau: Plateau) {
-        this.position = position;
-        this.direction = direction;
-        this.plateau = plateau;
-    }
-}
+import { main, Position, Plateau, Direction, Rover } from './index';
 
 test("Rover returns its position ", () => {
     const position: Position = { x: 1, y: 2 };
