@@ -27,27 +27,46 @@ export class Rover {
   }
 
   move(command: Command) {
-    const currentDirectionIndex = this.directions.indexOf(this.direction);
-
-    let nextDirectionIndex = currentDirectionIndex;
-
     if (command === 'L') {
-      nextDirectionIndex = (this.directions.length + currentDirectionIndex - 1) % this.directions.length;
+      this.direction = this.turnToLeft();
     } else if (command === 'R') {
-      nextDirectionIndex = (this.directions.length + currentDirectionIndex + 1) % this.directions.length;
+      this.direction = this.turnToRight();
     } else if (command === 'M') {
-      if (this.direction === 'N') {
-        this.position.y += 1;
-      } else if (this.direction === 'E') {
-        this.position.x += 1;
-      } else if (this.direction === 'S') {
-        this.position.y -= 1;
-      } else if (this.direction === 'W') {
-        this.position.x -= 1;
-      }
+      this.position = this.moveForward();
+    } else {
+      throw new Error(`Unexpected command ${command} is provided`);
     }
 
-    this.direction = this.directions[nextDirectionIndex];
+  }
+
+  private turnToRight(): Direction {
+    const currentDirectionIndex = this.directions.indexOf(this.direction);
+    const nextDirectionIndex = (this.directions.length + currentDirectionIndex + 1) % this.directions.length;
+    return this.directions[nextDirectionIndex]
+  }
+
+  private turnToLeft(): Direction {
+    const currentDirectionIndex = this.directions.indexOf(this.direction);
+    const nextDirectionIndex = (this.directions.length + currentDirectionIndex - 1) % this.directions.length;
+    return this.directions[nextDirectionIndex]
+  }
+
+  private moveForward(): Position {
+    const currentPosition = { ...this.position };
+
+    if (this.direction === 'N') {
+      currentPosition.y += 1;
+    } else if (this.direction === 'E') {
+      currentPosition.x += 1;
+    } else if (this.direction === 'S') {
+      currentPosition.y -= 1;
+    } else if (this.direction === 'W') {
+      currentPosition.x -= 1;
+    } else {
+      throw new Error('Rover is facing to the unexpected direction');
+    }
+
+    return currentPosition;
   }
 }
 
