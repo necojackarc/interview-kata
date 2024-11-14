@@ -21,9 +21,9 @@ export class Rover {
   private directions: Direction[] = ['N', 'E', 'S', 'W'];
 
   constructor(position: Position, direction: Direction, plateau: Plateau) {
-      this.position = { ...position };
-      this.direction = direction;
-      this.plateau = plateau;
+    this.position = { ...position };
+    this.direction = direction;
+    this.plateau = plateau;
   }
 
   move(command: Command) {
@@ -80,5 +80,32 @@ export class Rover {
 
 
 export function main(input: string[]): string[] {
-  // TODO: Implement
+  const rawPlateau = input[0].split(' ');
+
+  const plateau = {
+    maxX: Number(rawPlateau[0]),
+    maxY: Number(rawPlateau[1]),
+  } as Plateau;
+
+  const rawPositionAndDirection = input[1].split(' ');
+
+  const position = {
+    x: Number(rawPositionAndDirection[0]),
+    y: Number(rawPositionAndDirection[1]),
+  } as Position;
+  const direction = rawPositionAndDirection[2] as Direction;
+
+  const commands = input[2].split('') as Command[];
+
+  const rover = new Rover(
+    position,
+    direction,
+    plateau
+  );
+
+  commands.forEach((command) => {
+    rover.move(command);
+  })
+
+  return [`${rover.position.x} ${rover.position.y} ${rover.direction}`];
 }
