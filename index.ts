@@ -109,6 +109,7 @@ export function main(input: string[]): string[] {
 
     const rovers: Rover[] = [];
 
+    // Read from the second line (i = 1), then read two lines each.
     for(let i = 1; i < input.length; i += 2) {
         const rawPositionAndDirection = input[i].split(' ');
 
@@ -116,6 +117,7 @@ export function main(input: string[]): string[] {
             x: Number(rawPositionAndDirection[0]),
             y: Number(rawPositionAndDirection[1]),
         } as Position;
+
         const direction = rawPositionAndDirection[2] as Direction;
 
         const commands = input[i + 1].split('') as Command[];
