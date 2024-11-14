@@ -86,25 +86,31 @@ export function main(input: string[]): string[] {
     maxY: Number(rawPlateau[1]),
   } as Plateau;
 
-  const rawPositionAndDirection = input[1].split(' ');
+  const rovers: Rover[] = [];
 
-  const position = {
-    x: Number(rawPositionAndDirection[0]),
-    y: Number(rawPositionAndDirection[1]),
-  } as Position;
-  const direction = rawPositionAndDirection[2] as Direction;
+  for(let i = 1; i < input.length; i += 2) {
+    const rawPositionAndDirection = input[i].split(' ');
 
-  const commands = input[2].split('') as Command[];
+    const position = {
+      x: Number(rawPositionAndDirection[0]),
+      y: Number(rawPositionAndDirection[1]),
+    } as Position;
+    const direction = rawPositionAndDirection[2] as Direction;
 
-  const rover = new Rover(
-    position,
-    direction,
-    plateau
-  );
+    const commands = input[i + 1].split('') as Command[];
 
-  commands.forEach((command) => {
-    rover.move(command);
-  })
+    const rover = new Rover(
+      position,
+      direction,
+      plateau
+    );
 
-  return [`${rover.position.x} ${rover.position.y} ${rover.direction}`];
+    commands.forEach((command) => {
+      rover.move(command);
+    })
+
+    rovers.push(rover);
+  }
+
+  return rovers.map((rover) => (`${rover.position.x} ${rover.position.y} ${rover.direction}`));
 }
