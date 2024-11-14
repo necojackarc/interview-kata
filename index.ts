@@ -78,7 +78,6 @@ export class Rover {
   }
 }
 
-
 export function main(input: string[]): string[] {
   const rawPlateau = input[0].split(' ');
 

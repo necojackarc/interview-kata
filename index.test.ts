@@ -165,18 +165,18 @@ test("Example - Single Rover Pattern 1", () => {
     expect(main(input)).toEqual(expected);
 })
 
-// test("Example - Single Rover Pattern 2", () => {
-//     const input = [
-//         '5 5',
-//         '3 3 E',
-//         'MMRMMRMRRM',
-//     ]
-//
-//     const expected = ['5 1 E'];
-//
-//     expect(main(input)).toEqual(expected);
-// })
-//
+test("Example - Single Rover Pattern 2", () => {
+    const input = [
+        '5 5',
+        '3 3 E',
+        'MMRMMRMRRM',
+    ]
+
+    const expected = ['5 1 E'];
+
+    expect(main(input)).toEqual(expected);
+})
+
 // test("Example - Two Rovers", () => {
 //     const input = [
 //         '5 5',
