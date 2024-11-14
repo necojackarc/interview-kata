@@ -26,9 +26,13 @@ export class Rover {
         this.position = { ...position }; // Clone an object to avoid side effect on the original object
         this.direction = direction;
         this.plateau = plateau;
-  }
+    }
 
-    move(command: Command) {
+    /**
+     * Move or turn the rover for the given command.
+     * @param command Command
+     */
+    move(command: Command): void {
         if (command === 'L') {
             this.direction = this.turnToLeft();
         } else if (command === 'R') {
