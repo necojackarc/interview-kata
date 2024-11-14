@@ -116,43 +116,85 @@ describe('Rover', () => {
             })
         });
 
-        test("Rover does not move beyond the upper edge of the plateau", () => {
-            for (let i = 0; i < plateau.maxY + 1; i++) {
-                rover.move('M');
-            }
-            expect(rover.position).toEqual({ x: 1, y: 5 });
-        })
+        describe("When Rover tries to move beyond the upper edge of the plateau", () => {
+            const direction = 'N';
+            const position = { x: 2, y: 5 };
 
-        test("Rover does not move beyond the bottom edge of the plateau", () => {
-            rover.move('R');
-            rover.move('R');
-            expect(rover.direction).toEqual('S');
+            beforeEach(() => {
+                rover.direction = direction;
+                rover.position = position;
+            });
 
-            for (let i = 0; i < plateau.maxY + 1; i++) {
+            test("Rover stays at the last valid position", () => {
                 rover.move('M');
-            }
-            expect(rover.position).toEqual({ x: 1, y: 0 });
+                expect(rover.position).toEqual({ x: 2, y: 5 });
+            });
+
+            test("Rover does not change its direction", () => {
+                rover.move('M');
+                expect(rover.direction).toEqual('N');
+            });
         });
 
-        test("Rover does not move beyond the right edge of the plateau", () => {
-            rover.move('R');
-            expect(rover.direction).toEqual('E');
+        describe("When Rover tries to move beyond the bottom edge of the plateau", () => {
+            const direction = 'S';
+            const position = { x: 2, y: 0 };
 
-            for (let i = 0; i < plateau.maxX + 1; i++) {
+            beforeEach(() => {
+                rover.direction = direction;
+                rover.position = position;
+            });
+
+            test("Rover stays at the last valid position", () => {
                 rover.move('M');
-            }
-            expect(rover.position).toEqual({ x: 5, y: 2 });
-        })
+                expect(rover.position).toEqual({ x: 2, y: 0 });
+            });
 
-        test("Rover does not move beyond the left edge of the plateau", () => {
-            rover.move('L');
-            expect(rover.direction).toEqual('W');
-
-            for (let i = 0; i < plateau.maxX + 1; i++) {
+            test("Rover does not change its direction", () => {
                 rover.move('M');
-            }
-            expect(rover.position).toEqual({ x: 0, y: 2 });
-        })
+                expect(rover.direction).toEqual('S');
+            });
+        });
+
+        describe("When Rover tries to move beyond the left edge of the plateau", () => {
+            const direction = 'W';
+            const position = { x: 0, y: 3 };
+
+            beforeEach(() => {
+                rover.direction = direction;
+                rover.position = position;
+            });
+
+            test("Rover stays at the last valid position", () => {
+                rover.move('M');
+                expect(rover.position).toEqual({ x: 0, y: 3 });
+            });
+
+            test("Rover does not change its direction", () => {
+                rover.move('M');
+                expect(rover.direction).toEqual('W');
+            });
+        });
+
+        describe("When Rover tries to move beyond the right edge of the plateau", () => {
+            const direction = 'E';
+            const position = { x: 5, y: 3 };
+
+            beforeEach(() => {
+                rover.direction = direction;
+                rover.position = position;
+            });
+
+            test("Rover stays at the last valid position", () => {
+                rover.move('M');
+                expect(rover.position).toEqual({ x: 5, y: 3 });
+            });
+
+            test("Rover does not change its direction", () => {
+                rover.move('M');
+                expect(rover.direction).toEqual('E');
+            });
+        });
     });
 });
 
