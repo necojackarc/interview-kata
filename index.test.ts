@@ -79,7 +79,23 @@ describe('Rover', () => {
         expect(rover.direction).toEqual('N');
     })
 
-    test.todo("Rover moves as directed")
+    test("Rover moves up when rover faces to the north", () => {
+        const command: Command = 'M';
+        rover.move(command);
+        expect(rover.position).toEqual({ x: 1, y: 3 });
+    })
+
+    test("Rover moves up when rover faces to the east", () => {
+
+    })
+
+    test("Rover moves up when rover faces to the south", () => {
+
+    })
+
+    test("Rover moves up when rover faces to the west", () => {
+
+    })
 
     test.todo("Rover does not move off the plateau")
 

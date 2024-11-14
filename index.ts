@@ -35,6 +35,8 @@ export class Rover {
       nextDirectionIndex = (this.directions.length + currentDirectionIndex - 1) % this.directions.length;
     } else if (command == 'R') {
       nextDirectionIndex = (this.directions.length + currentDirectionIndex + 1) % this.directions.length;
+    } else if (command = 'M') {
+      this.position.y += 1;
     }
 
     this.direction = this.directions[nextDirectionIndex];
