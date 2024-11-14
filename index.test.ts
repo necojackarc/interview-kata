@@ -19,65 +19,77 @@ describe('Rover', () => {
         expect(rover.direction).toEqual(direction);
     });
 
-    test("Rover turns to left", () => {
-        const command: Command = 'L';
-        rover.move(command);
-        expect(rover.direction).toEqual('W');
-    })
+    describe('When Rover faces to the north', () => {
+        beforeEach(() => {
+            rover.direction = 'N';
+        });
 
-    test("Rover turns to left twice", () => {
-        const command: Command = 'L';
-        rover.move(command);
-        rover.move(command);
-        expect(rover.direction).toEqual('S');
-    })
+        test("Rover faces to the west after it turns left", () => {
+            const command: Command = 'L';
+            rover.move(command);
+            expect(rover.direction).toEqual('W');
+        })
 
-    test("Rover turns to left three times", () => {
-        const command: Command = 'L';
-        rover.move(command);
-        rover.move(command);
-        rover.move(command);
-        expect(rover.direction).toEqual('E');
-    })
+        test("Rover faces to the east after it turns right", () => {
+            const command: Command = 'R';
+            rover.move(command);
+            expect(rover.direction).toEqual('E');
+        })
+    });
 
-    test("Rover turns to left four times", () => {
-        const command: Command = 'L';
-        rover.move(command);
-        rover.move(command);
-        rover.move(command);
-        rover.move(command);
-        expect(rover.direction).toEqual('N');
-    })
+    describe('When Rover faces to the west', () => {
+        beforeEach(() => {
+            rover.direction = 'W';
+        });
 
-    test("Rover turns to right", () => {
-        const command: Command = 'R';
-        rover.move(command);
-        expect(rover.direction).toEqual('E');
-    })
+        test("Rover faces to the south after it turns left", () => {
+            const command: Command = 'L';
+            rover.move(command);
+            expect(rover.direction).toEqual('S');
+        })
 
-    test("Rover turns to right twice", () => {
-        const command: Command = 'R';
-        rover.move(command);
-        rover.move(command);
-        expect(rover.direction).toEqual('S');
-    })
+        test("Rover faces to the north after it turns right", () => {
+            const command: Command = 'R';
+            rover.move(command);
+            expect(rover.direction).toEqual('N');
+        })
+    });
 
-    test("Rover turns to right three times", () => {
-        const command: Command = 'R';
-        rover.move(command);
-        rover.move(command);
-        rover.move(command);
-        expect(rover.direction).toEqual('W');
-    })
+    describe('When Rover faces to the south', () => {
+        beforeEach(() => {
+            rover.direction = 'S';
+        });
 
-    test("Rover turns to right four times", () => {
-        const command: Command = 'R';
-        rover.move(command);
-        rover.move(command);
-        rover.move(command);
-        rover.move(command);
-        expect(rover.direction).toEqual('N');
-    })
+        test("Rover faces to the east after it turns left", () => {
+            const command: Command = 'L';
+            rover.move(command);
+            expect(rover.direction).toEqual('E');
+        })
+
+        test("Rover faces to the west after it turns right", () => {
+            const command: Command = 'R';
+            rover.move(command);
+            expect(rover.direction).toEqual('W');
+        })
+    });
+
+    describe('When Rover faces to the east', () => {
+        beforeEach(() => {
+            rover.direction = 'E';
+        });
+
+        test("Rover faces to the north after it turns left", () => {
+            const command: Command = 'L';
+            rover.move(command);
+            expect(rover.direction).toEqual('N');
+        })
+
+        test("Rover faces to the south after it turns right", () => {
+            const command: Command = 'R';
+            rover.move(command);
+            expect(rover.direction).toEqual('S');
+        })
+    });
 
     test("Rover moves up when rover faces to the north", () => {
         const command: Command = 'M';
