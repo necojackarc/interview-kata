@@ -130,12 +130,16 @@ export function main(input: string[]): string[] {
             plateau
         );
 
-      commands.forEach((command) => {
-          rover.move(command);
-      })
+        // This is a loop inside a loop.
+        // If it causes a performance issue, we need to look into it.
+        // It depends on the possible number of rovers and the possible length of series of commands.
+        commands.forEach((command) => {
+            rover.move(command);
+        })
 
-      rovers.push(rover);
+        rovers.push(rover);
   }
 
+  // This is more of presentation logic to format the position and direction.
   return rovers.map((rover) => (`${rover.position.x} ${rover.position.y} ${rover.direction}`));
 }
