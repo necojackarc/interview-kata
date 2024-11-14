@@ -55,13 +55,21 @@ export class Rover {
     const currentPosition = { ...this.position };
 
     if (this.direction === 'N') {
-      currentPosition.y += 1;
+      if (currentPosition.y < this.plateau.maxY) {
+        currentPosition.y += 1;
+      }
     } else if (this.direction === 'E') {
-      currentPosition.x += 1;
+      if (currentPosition.x < this.plateau.maxX) {
+        currentPosition.x += 1;
+      }
     } else if (this.direction === 'S') {
-      currentPosition.y -= 1;
+      if (currentPosition.y > 0) {
+        currentPosition.y -= 1;
+      }
     } else if (this.direction === 'W') {
-      currentPosition.x -= 1;
+      if (currentPosition.x > 0) {
+        currentPosition.x -= 1;
+      }
     } else {
       throw new Error('Rover is facing to the unexpected direction');
     }

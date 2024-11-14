@@ -113,7 +113,43 @@ describe('Rover', () => {
         expect(rover.position).toEqual({ x: 0, y: 2 });
     })
 
-    test.todo("Rover does not move off the plateau")
+    test("Rover does not move beyond the upper edge of the plateau", () => {
+        for (let i = 0; i < plateau.maxY + 1; i++) {
+            rover.move('M');
+        }
+        expect(rover.position).toEqual({ x: 1, y: 5 });
+    })
+
+    test("Rover does not move beyond the bottom edge of the plateau", () => {
+        rover.move('R');
+        rover.move('R');
+        expect(rover.direction).toEqual('S');
+
+        for (let i = 0; i < plateau.maxY + 1; i++) {
+            rover.move('M');
+        }
+        expect(rover.position).toEqual({ x: 1, y: 0 });
+    });
+
+    test("Rover does not move beyond the right edge of the plateau", () => {
+        rover.move('R');
+        expect(rover.direction).toEqual('E');
+
+        for (let i = 0; i < plateau.maxX + 1; i++) {
+            rover.move('M');
+        }
+        expect(rover.position).toEqual({ x: 5, y: 2 });
+    })
+
+    test("Rover does not move beyond the left edge of the plateau", () => {
+        rover.move('L');
+        expect(rover.direction).toEqual('W');
+
+        for (let i = 0; i < plateau.maxX + 1; i++) {
+            rover.move('M');
+        }
+        expect(rover.position).toEqual({ x: 0, y: 2 });
+    })
 
 });
 
