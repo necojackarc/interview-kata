@@ -85,16 +85,32 @@ describe('Rover', () => {
         expect(rover.position).toEqual({ x: 1, y: 3 });
     })
 
-    test("Rover moves up when rover faces to the east", () => {
+    test("Rover moves right when rover faces to the east", () => {
+        rover.move('R');
+        expect(rover.direction).toEqual('E');
 
+        const command: Command = 'M';
+        rover.move(command);
+        expect(rover.position).toEqual({ x: 2, y: 2 });
     })
 
-    test("Rover moves up when rover faces to the south", () => {
+    test("Rover moves down when rover faces to the south", () => {
+        rover.move('R');
+        rover.move('R');
+        expect(rover.direction).toEqual('S');
 
+        const command: Command = 'M';
+        rover.move(command);
+        expect(rover.position).toEqual({ x: 1, y: 1 });
     })
 
-    test("Rover moves up when rover faces to the west", () => {
+    test("Rover moves left when rover faces to the west", () => {
+        rover.move('L');
+        expect(rover.direction).toEqual('W');
 
+        const command: Command = 'M';
+        rover.move(command);
+        expect(rover.position).toEqual({ x: 0, y: 2 });
     })
 
     test.todo("Rover does not move off the plateau")

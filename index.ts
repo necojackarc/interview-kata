@@ -21,7 +21,7 @@ export class Rover {
   private directions: Direction[] = ['N', 'E', 'S', 'W'];
 
   constructor(position: Position, direction: Direction, plateau: Plateau) {
-      this.position = position;
+      this.position = { ...position };
       this.direction = direction;
       this.plateau = plateau;
   }
@@ -33,10 +33,18 @@ export class Rover {
 
     if (command === 'L') {
       nextDirectionIndex = (this.directions.length + currentDirectionIndex - 1) % this.directions.length;
-    } else if (command == 'R') {
+    } else if (command === 'R') {
       nextDirectionIndex = (this.directions.length + currentDirectionIndex + 1) % this.directions.length;
-    } else if (command = 'M') {
-      this.position.y += 1;
+    } else if (command === 'M') {
+      if (this.direction === 'N') {
+        this.position.y += 1;
+      } else if (this.direction === 'E') {
+        this.position.x += 1;
+      } else if (this.direction === 'S') {
+        this.position.y -= 1;
+      } else if (this.direction === 'W') {
+        this.position.x -= 1;
+      }
     }
 
     this.direction = this.directions[nextDirectionIndex];
