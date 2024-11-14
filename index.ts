@@ -28,7 +28,15 @@ export class Rover {
 
   move(command: Command) {
     const currentDirectionIndex = this.directions.indexOf(this.direction);
-    const nextDirectionIndex = (this.directions.length + currentDirectionIndex - 1) % this.directions.length;
+
+    let nextDirectionIndex = currentDirectionIndex;
+
+    if (command === 'L') {
+      nextDirectionIndex = (this.directions.length + currentDirectionIndex - 1) % this.directions.length;
+    } else if (command == 'R') {
+      nextDirectionIndex = (this.directions.length + currentDirectionIndex + 1) % this.directions.length;
+    }
+
     this.direction = this.directions[nextDirectionIndex];
   }
 }
