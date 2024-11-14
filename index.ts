@@ -100,6 +100,8 @@ export class Rover {
 }
 
 export function main(input: string[]): string[] {
+    // TODO: Validate input, assuming it's user's input and not yet validated
+
     const rawPlateau = input[0].split(' ');
 
     const plateau = {

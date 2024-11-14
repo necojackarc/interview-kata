@@ -239,4 +239,40 @@ describe('main()', () => {
 
         expect(main(input)).toEqual(expected);
     })
+
+    test('Input format is invalid - a seres of command is missing', () => {
+        const input = [
+            '5 5',
+            '1 2 N',
+            '3 3 E',
+            'MMRMMRMRRM',
+        ]
+
+        // NOTE: Use a concrete error type if we define one for this case
+        expect(() => main(input)).toThrow();
+    });
+
+    test('Input format is invalid - a plateau shape is missing', () => {
+        const input = [
+            '1 2 N',
+            'LMLMLMLMM',
+            '3 3 E',
+            'MMRMMRMRRM',
+        ]
+
+        // NOTE: Use a concrete error type if we define one for this case
+        expect(() => main(input)).toThrow();
+    });
+
+    test('Input format is invalid - the position of a rover is missing', () => {
+        const input = [
+            '5 5',
+            'LMLMLMLMM',
+            '3 3 E',
+            'MMRMMRMRRM',
+        ]
+
+        // NOTE: Use a concrete error type if we define one for this case
+        expect(() => main(input)).toThrow();
+    });
 });
