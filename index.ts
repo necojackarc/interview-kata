@@ -52,30 +52,46 @@ export class Rover {
         return this.directions[nextDirectionIndex]
     }
 
-    private moveForward(): Position {
-        const currentPosition = { ...this.position };
-
-        if (this.direction === 'N') {
-            if (currentPosition.y < this.plateau.maxY) {
-                currentPosition.y += 1;
-            }
-        } else if (this.direction === 'E') {
-            if (currentPosition.x < this.plateau.maxX) {
-                currentPosition.x += 1;
-            }
-        } else if (this.direction === 'S') {
-            if (currentPosition.y > 0) {
-                currentPosition.y -= 1;
-            }
-        } else if (this.direction === 'W') {
-            if (currentPosition.x > 0) {
-                currentPosition.x -= 1;
-            }
-        } else {
-            throw new Error('Rover is facing to the unexpected direction');
+    private canMoveForward(): boolean {
+        if (this.direction === 'N' && this.position.y === this.plateau.maxY) {
+            return false;
         }
 
-        return currentPosition;
+        if (this.direction === 'S' && this.position.y === 0) {
+            return false;
+        }
+
+        if (this.direction === 'E' && this.position.x === this.plateau.maxX) {
+            return false;
+        }
+
+        if (this.direction === 'W' && this.position.x === 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private moveForward(): Position {
+        const nextPosition = { ...this.position };
+
+        if (!this.canMoveForward()) {
+            return nextPosition;
+        }
+
+        if (this.direction === 'N') {
+            nextPosition.y += 1;
+        } else if (this.direction === 'E') {
+            nextPosition.x += 1;
+        } else if (this.direction === 'S') {
+            nextPosition.y -= 1;
+        } else if (this.direction === 'W') {
+            nextPosition.x -= 1;
+        } else {
+            throw new Error('Rover is facing to an unexpected direction');
+        }
+
+        return nextPosition;
     }
 }
 
