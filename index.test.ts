@@ -19,7 +19,7 @@ describe('Rover', () => {
         expect(rover.direction).toEqual(direction);
     });
 
-    describe('#move', () => {
+    describe('move()', () => {
         describe('When Rover faces to the north', () => {
             beforeEach(() => {
                 rover.direction = 'N';
@@ -198,43 +198,45 @@ describe('Rover', () => {
     });
 });
 
-test("Example - Single Rover Pattern 1", () => {
-    const input = [
-        '5 5',
-        '1 2 N',
-        'LMLMLMLMM',
-    ]
+describe('main()', () => {
+    test("Example - Single Rover Pattern 1", () => {
+        const input = [
+            '5 5',
+            '1 2 N',
+            'LMLMLMLMM',
+        ]
 
-    const expected = ['1 3 N'];
+        const expected = ['1 3 N'];
 
-    expect(main(input)).toEqual(expected);
-})
+        expect(main(input)).toEqual(expected);
+    })
 
-test("Example - Single Rover Pattern 2", () => {
-    const input = [
-        '5 5',
-        '3 3 E',
-        'MMRMMRMRRM',
-    ]
+    test("Example - Single Rover Pattern 2", () => {
+        const input = [
+            '5 5',
+            '3 3 E',
+            'MMRMMRMRRM',
+        ]
 
-    const expected = ['5 1 E'];
+        const expected = ['5 1 E'];
 
-    expect(main(input)).toEqual(expected);
-})
+        expect(main(input)).toEqual(expected);
+    })
 
-test("Example - Two Rovers", () => {
-    const input = [
-        '5 5',
-        '1 2 N',
-        'LMLMLMLMM',
-        '3 3 E',
-        'MMRMMRMRRM',
-    ]
+    test("Example - Two Rovers", () => {
+        const input = [
+            '5 5',
+            '1 2 N',
+            'LMLMLMLMM',
+            '3 3 E',
+            'MMRMMRMRRM',
+        ]
 
-    const expected = [
-        '1 3 N',
-        '5 1 E',
-    ];
+        const expected = [
+            '1 3 N',
+            '5 1 E',
+        ];
 
-    expect(main(input)).toEqual(expected);
-})
+        expect(main(input)).toEqual(expected);
+    })
+});
